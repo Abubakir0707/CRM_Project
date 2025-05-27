@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   web:
-    image: shoxakong/django-image:latest
+    image: abubark2006/django-image:latest
     ports:
       - "8000:8000"
     env_file:
