@@ -1,13 +1,7 @@
 from pathlib import Path
 import environ
+from decouple import config
 
-env = environ.Env(
-    DEBUG=(bool, False)
-)
-
-READ_DOT_ENV_FILE = env.bool('READ_DOT_ENV_FILE', default=False)
-if READ_DOT_ENV_FILE:
-    environ.Env.read_env()
 
 DEBUG = True
 SECRET_KEY = "1234"
@@ -15,7 +9,7 @@ SECRET_KEY = "1234"
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ALLOWED_HOSTS = ['13.60.91.189', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -75,12 +69,12 @@ WSGI_APPLICATION = 'djcrm.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'djangoproject',
-        'USER': 'admin_user',
-        'PASSWORD': '1234',
-        'HOST': '13.60.91.189',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
 
