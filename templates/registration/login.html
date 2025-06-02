@@ -2,23 +2,54 @@
 {% load tailwind_filters %}
 
 {% block content %}
+<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+        <!-- Header -->
+        <div class="text-center">
+            <h2 class="text-3xl font-bold text-gray-900 mb-2">Welcome back</h2>
+            <p class="text-gray-600">Sign in to your account to continue</p>
+        </div>
 
-<div class="max-w-lg mx-auto">
+        <!-- Login Form -->
+        <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+            <form method="post" class="space-y-6">
+                {% csrf_token %}
 
-    <div class="py-5 border-b border-gray-200">
-        <a class="hover:text-blue-500" href="{% url 'signup' %}">Don't have an account?</a>
-    </div>
+                <!-- Form Fields -->
+                <div class="space-y-4">
+                    {{ form|crispy }}
+                </div>
 
-    <form method="post" class="mt-5">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button type='submit' class="w-full text-white bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md">
-            Login
-        </button>
-    </form>
-    <div class="py-5 border-t border-gray-200 mt-5">
-        <a class="hover:text-blue-500" href="{% url 'reset-password' %}">Forgot password?</a>
+                <!-- Submit Button -->
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
+                    Sign In
+                </button>
+            </form>
+
+            <!-- Links -->
+            <div class="mt-6 space-y-4">
+                <div class="text-center">
+                    <a href="{% url 'reset-password' %}" class="text-emerald-600 hover:text-emerald-700 font-medium transition-colors">
+                        Forgot your password?
+                    </a>
+                </div>
+
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-300"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-white text-gray-500">Don't have an account?</span>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <a href="{% url 'signup' %}" class="w-full inline-flex justify-center items-center px-4 py-3 border border-gray-300 rounded-lg text-gray-700 bg-white hover:bg-gray-50 font-medium transition-colors">
+                        Create new account
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
 {% endblock content %}

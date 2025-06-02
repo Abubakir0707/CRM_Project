@@ -2,17 +2,58 @@
 {% load tailwind_filters %}
 
 {% block content %}
+<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+        <!-- Header -->
+        <div class="text-center">
+            <h2 class="text-3xl font-bold text-gray-900 mb-2">Create your account</h2>
+            <p class="text-gray-600">Join us and start managing your leads effectively</p>
+        </div>
 
-<div class="max-w-lg mx-auto">
-    <form method="post" class="mt-5">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button type='submit' class="w-full text-white bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md">
-            Signup
-        </button>
-    </form>
-    <div class="py-5 border-t border-gray-200 mt-5">
-        <a class="hover:text-blue-500" href="{% url 'login' %}">Already have an account?</a>
+        <!-- Signup Form -->
+        <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+            <form method="post" class="space-y-6">
+                {% csrf_token %}
+
+                <!-- Form Fields -->
+                <div class="space-y-4">
+                    {{ form|crispy }}
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
+                    Create Account
+                </button>
+            </form>
+
+            <!-- Terms -->
+            <div class="mt-6">
+                <p class="text-xs text-gray-500 text-center">
+                    By creating an account, you agree to our
+                    <a href="#" class="text-emerald-600 hover:text-emerald-700">Terms of Service</a>
+                    and
+                    <a href="#" class="text-emerald-600 hover:text-emerald-700">Privacy Policy</a>
+                </p>
+            </div>
+
+            <!-- Login Link -->
+            <div class="mt-6">
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-300"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-white text-gray-500">Already have an account?</span>
+                    </div>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <a href="{% url 'login' %}" class="w-full inline-flex justify-center items-center px-4 py-3 border border-gray-300 rounded-lg text-gray-700 bg-white hover:bg-gray-50 font-medium transition-colors">
+                        Sign in instead
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock content %}
